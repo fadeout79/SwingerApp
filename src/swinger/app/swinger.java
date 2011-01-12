@@ -2,19 +2,22 @@ package swinger.app;
 
 import java.net.URLEncoder;
 
+
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.location.Location; 
+import android.location.LocationManager; 
+import android.location.LocationListener;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
-import android.content.Context;
-import android.content.Intent;
 
 //import android.content.ActivityNotFoundException;
-import android.location.LocationManager;
 import android.net.Uri;
 
 
-import android.util.Log; 
+ 
 
 public class swinger extends Activity {
 	
@@ -23,60 +26,70 @@ public class swinger extends Activity {
     
 	public static final String LOG_TAG = "SwingerApp";
 
+    private LocationManager locmgr = null;
+    private TextView tv;
+    
+    // Called when the activity is first created. 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.main);
+
+        tv = (TextView) findViewById(R.id.tv);
         
-        //serverComm = new ServerCommunication();
+        userInfo unUser = new userInfo();
         
-        //serverComm.init("POST", "Content-Type","application/x-www-form-urlencoded" );
-        //serverComm.sendData(getConnectionInfo());
-        TextView tv = new TextView(this);
         
-        try
-        {
+        unUser.testFunction();
         
-	        userInfo unUser = new userInfo();
-	        
-	        
-	        unUser.testFunction();
-	        
-	        
-			LocationManager locationManager; 
-			String context = Context.LOCATION_SERVICE;
-			
-			Log.v(LOG_TAG, "Context : " + context);
-			
-			locationManager = (LocationManager)getSystemService(context); 
-			
-		/*	Criteria crta = new Criteria(); 
-			crta.setAccuracy(Criteria.ACCURACY_FINE); 
-			crta.setAltitudeRequired(false); 
-			crta.setBearingRequired(false); 
-			crta.setCostAllowed(true); 
-			crta.setPowerRequirement(Criteria.POWER_LOW); 
-			String provider = locationManager.getBestProvider(crta, true); 
-			*/
-			// String provider = LocationManager.GPS_PROVIDER; 
-			//mLocation = locationManager.getLastKnownLocation(provider);
-	        
-	    //    Double test = unUser.getUserLatitude();
-	        
-	      //  tv.setText(unUser.getReturnValue());
-	        //serverComm.closeConnection();
-			
-			Log.v(LOG_TAG, "Longitude : " + unUser.getUserLongitude());
-        	tv.setText("123");
-        }
-        catch (Error e)
-        {
-            tv.setText(e.getMessage());
-        	
-        }
-        setContentView(tv);
+        //grab the location manager service
+        locmgr = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        
+        Log.v(LOG_TAG, "Test");
+        tv.setText("waiting for location");
         
     }
-
+	
+	
+        
+    //Start a location listener
+    LocationListener onLocationChange=new LocationListener() {
+        public void onLocationChanged(Location loc) {
+            //sets and displays the lat/long when a location is provided
+            String latlong = "Lat: " + loc.getLatitude() + " Long: " + loc.getLongitude();   
+            tv.setText(latlong);
+        }
+         
+        public void onProviderDisabled(String provider) {
+        // required for interface, not used
+        }
+         
+        public void onProviderEnabled(String provider) {
+        // required for interface, not used
+        }
+         
+        public void onStatusChanged(String provider, int status,
+        Bundle extras) {
+        // required for interface, not used
+        }
+    };
+    
+    //pauses listener while app is inactive
+    @Override
+    public void onPause() {
+        super.onPause();
+        locmgr.removeUpdates(onLocationChange);
+    }
+    
+    //reactivates listener when app is resumed
+    @Override
+    public void onResume() {
+        super.onResume();
+        locmgr.requestLocationUpdates(LocationManager.GPS_PROVIDER,0,10000.0f,onLocationChange);
+    }
+    
+    
+    
     @Override 
     public void onActivityResult(int requestCode, int resultCode, Intent data) { 
       super.onActivityResult(requestCode, resultCode, data); 
