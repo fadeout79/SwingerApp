@@ -11,6 +11,9 @@ import android.location.LocationManager;
 import android.location.LocationListener;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.TextView;
 
 //import android.content.ActivityNotFoundException;
@@ -26,8 +29,11 @@ public class swinger extends Activity {
     
 	public static final String LOG_TAG = "SwingerApp";
 
+	private static final int SELECT_PICTURE = 1;  
+
     private LocationManager locmgr = null;
     private TextView tv;
+    private imageManipulation userPicture;
     
     // Called when the activity is first created. 
     @Override
@@ -47,6 +53,27 @@ public class swinger extends Activity {
         
         Log.v(LOG_TAG, "Test");
         tv.setText("waiting for location");
+        
+        
+		((Button) findViewById(R.id.getImage)).setOnClickListener(new OnClickListener() 
+		{                  
+			public void onClick(View arg0) 
+			{    
+				// in onCreate or any event where your want the user to                     
+				// select a file                     
+				Intent intent = new Intent();                     
+				intent.setType("image/*");                     
+				intent.setAction(Intent.ACTION_GET_CONTENT);                     
+				startActivityForResult(Intent.createChooser(intent,
+						"Select Picture"), SELECT_PICTURE);
+			}             
+		}
+		); 
+        
+        
+        
+        
+        userPicture = new imageManipulation();
         
     }
 	
