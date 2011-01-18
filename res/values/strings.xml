@@ -3,5 +3,5 @@
     <string name="hello">Hello World, swinger!</string>
     <string name="imageChoose">Pick an image</string>
     <string name="app_name">Swinger App</string>
-    
+    <string name="imageManipulation_name">Pick a picture</string>
 </resources>

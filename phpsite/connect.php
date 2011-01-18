@@ -1,6 +1,6 @@
 <?php
 
-	include('../../connectionInfo.php');
+	requires('../../connectionInfo.php');
 
 
 	function openConnection()

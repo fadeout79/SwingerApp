@@ -13,10 +13,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.LinearLayout;
 import android.widget.Button;
 import android.widget.TextView;
 
-//import android.content.ActivityNotFoundException;
 import android.net.Uri;
 
 
@@ -28,12 +28,9 @@ public class swinger extends Activity {
     /** Called when the activity is first created. */
     
 	public static final String LOG_TAG = "SwingerApp";
-
-	private static final int SELECT_PICTURE = 1;  
-
+	private static final int PICK_IMAGE = 101;
     private LocationManager locmgr = null;
     private TextView tv;
-    private imageManipulation userPicture;
     
     // Called when the activity is first created. 
     @Override
@@ -51,7 +48,6 @@ public class swinger extends Activity {
         //grab the location manager service
         locmgr = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         
-        Log.v(LOG_TAG, "Test");
         tv.setText("waiting for location");
         
         
@@ -61,22 +57,36 @@ public class swinger extends Activity {
 			{    
 				// in onCreate or any event where your want the user to                     
 				// select a file                     
-				Intent intent = new Intent();                     
-				intent.setType("image/*");                     
-				intent.setAction(Intent.ACTION_GET_CONTENT);                     
-				startActivityForResult(Intent.createChooser(intent,
-						"Select Picture"), SELECT_PICTURE);
+				Intent intent = new Intent(swinger.this, imageManipulation.class);                     
+				startActivityForResult(intent, PICK_IMAGE);
 			}             
 		}
 		); 
-        
-        
-        
-        
-        userPicture = new imageManipulation();
-        
+
+
     }
+    
 	
+    public void onActivityResult(int reqCode, int resultCode, Intent data) {
+        super.onActivityResult(reqCode, resultCode, data);
+
+        switch (reqCode) {
+          case (PICK_IMAGE) :
+            if (resultCode == Activity.RESULT_OK) 
+            {
+              String wImagePath = data.getStringExtra(imageManipulation.IMAGE_PATH);
+              
+              tv.setText(wImagePath);
+              
+              LinearLayout ll = (LinearLayout)findViewById(R.id.mainPage);
+
+              ImageLevel wImageLevel = new ImageLevel(ll.getContext());
+              wImageLevel.setImagePath(wImagePath);
+              ll.addView(wImageLevel);
+            }    
+          break;
+        }
+      }
 	
         
     //Start a location listener
@@ -114,27 +124,6 @@ public class swinger extends Activity {
         super.onResume();
         locmgr.requestLocationUpdates(LocationManager.GPS_PROVIDER,0,10000.0f,onLocationChange);
     }
-    
-    
-    
-    @Override 
-    public void onActivityResult(int requestCode, int resultCode, Intent data) { 
-      super.onActivityResult(requestCode, resultCode, data); 
-      if (requestCode == 0) 
-        if (resultCode == Activity.RESULT_OK) { 
-          Uri selectedImage = data.getData();
-          
-          
-          serverComm.sendPicture(selectedImage.getPath());
-          // TODO Do something with the select image URI 
-          TextView tv = new TextView(this);
-          tv.setText(serverComm.result);
-          setContentView(tv);
-
-        
-        }  
-    } 
-    
     
     
     public String getConnectionInfo()
