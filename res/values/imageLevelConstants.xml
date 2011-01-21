@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="thumbnailWidth">40dp</dimen>
+    <dimen name="thumbnailHeight">40dp</dimen>
+    <color name="levelBase">#000000</color>
+    <color name="levelBronze">#8C7853</color>
+    <color name="levelSilver">#E6E8FA</color>
+    <color name="levelGold">#CD7F32</color>
+    <color name="levelPlatinum">#6B238E</color>
+    <color name="levelDiamond">#FFFFFF</color>
+</resources>

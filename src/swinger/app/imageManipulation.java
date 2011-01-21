@@ -6,7 +6,6 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.provider.MediaStore.MediaColumns;
 import android.util.Log;
 
 public class imageManipulation extends Activity
@@ -19,7 +18,6 @@ public class imageManipulation extends Activity
 	@Override
 	public void onCreate(Bundle savedInstanceState) 
 	{
-		Log.v(LOG_TAG, "PASSED HERE.");
 		super.onCreate(savedInstanceState);
 		Intent intent = new Intent();                     
 		intent.setType("image/*");                     

@@ -1,24 +1,49 @@
 package swinger.app;
 
-import java.io.File;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.content.Intent;
+import android.util.AttributeSet;
+import android.view.LayoutInflater;
+import android.widget.RelativeLayout;
 
-public class StatusBar extends View 
+public class StatusBar extends RelativeLayout 
 {
 
+	/**
+	 * Constructor for this instance
+	 * 
+	 * @param context
+	 */
 	public StatusBar(Context context) 
 	{
-		super(context);
+		this(context, null);
+	}
+	
+	/**
+	 * Constructor for this instance
+	 * 
+	 * @param context
+	 * @param attr
+	 */
+	public StatusBar(Context context, AttributeSet attr) 
+	{
+		super(context, attr);
+		
+		LayoutInflater layoutInflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		layoutInflater.inflate(R.layout.statusbar, this, true);
+		
+		
 		// TODO Auto-generated constructor stub
 	}
 
+	//@Override
+	//protected void onFinishInflate()
+	//{
+		//super.onFinishInflate();
+	    //((Activity)getContext()).getLayoutInflater().inflate(R.layout.myhomebrewedComp, this);
+	//}
+	
+	
 //    public ImageView setImage(String imagePath) 
 //    {
 //    	File imgFile = new File(imagePath);

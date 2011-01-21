@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="availableStatus">Available</string>
+    <string name="pingLabel">Ping :</string>
+    <string name="pongLabel">Pong :</string>
+</resources>

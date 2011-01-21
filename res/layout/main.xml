@@ -18,4 +18,11 @@
     android:text="@string/imageChoose"
     />
 
+<swinger.app.StatusBar
+    android:id="@+id/statusBar1"  
+    android:orientation="horizontal"
+    android:layout_width="fill_parent" 
+    android:layout_height="wrap_content" 
+    /> 
+>
 </LinearLayout>

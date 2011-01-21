@@ -1,14 +1,14 @@
 package swinger.app;
 
-//import android.content.Intent;
 import android.location.Location;
-//import android.os.IBinder;
-//import android.app.Service;
 import android.util.Log;
 
 // public class userInfo extends Service
 public class userInfo
 { 
+	
+	public final String LOG_TAG = "userInfo";
+	
 	Location mUserLocation;
 	
 	String returnValue;
@@ -56,15 +56,9 @@ public class userInfo
 		return returnValue;
 	}
 
-/*	@Override 
-	public IBinder onBind(Intent intent) {
-		// TODO Auto-generated method stub
-		return null;
-	} 
-*/	
 	public void testFunction()
 	{
-
+		Log.v(LOG_TAG, "Test function called");
 	}
 } 
 

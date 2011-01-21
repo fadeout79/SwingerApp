@@ -1,13 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    >
-<ImageView
-    android:id="@+id/userThumb"  
-    android:layout_width="fill_parent" 
-    android:layout_height="wrap_content" 
-    />
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
 
-</LinearLayout>
+<swinger.app.ImageLevel
+    android:id="@+id/imageLevel1"  
+    android:orientation="horizontal"
+    android:layout_width="@dimen/thumbnailWidth" 
+    android:layout_height="@dimen/thumbnailHeight" 
+    />    
+
+<TextView
+	android:id="@+id/pingReceived"
+    android:layout_width="wrap_content" 
+    android:layout_height="wrap_content"
+    android:layout_toRightOf="@id/imageLevel1"
+    android:layout_alignTop="@id/imageLevel1"            
+    android:padding="3dip"
+    android:text="@string/pingLabel"
+	/>	
+
+<TextView
+	android:id="@+id/pongReceived"
+    android:layout_width="wrap_content" 
+    android:layout_height="wrap_content"
+    android:layout_alignTop="@id/imageLevel1"            
+    android:layout_toRightOf="@id/pingReceived"
+    android:padding="3dip"
+    android:text="@string/pongLabel"
+	/>	
+
+<TextView
+    android:id="@+id/statusMessage"  
+    android:layout_width="wrap_content" 
+    android:layout_height="wrap_content"
+    android:layout_toRightOf="@id/imageLevel1"
+    android:layout_alignLeft="@id/pingReceived"
+    android:layout_alignBottom="@id/imageLevel1"            
+    android:padding="3dip"
+    android:text="@string/availableStatus"
+    />
+    
+    
+</merge>
