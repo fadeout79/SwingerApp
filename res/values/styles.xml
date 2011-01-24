@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Global Theme Styles -->
+    <eat-comment />
+    
+	<style name="statusbarRedBackground" parent="@style/layoutPadding">
+        <item name="android:background">@drawable/drawable_red_background</item>	
+	</style>
+	
+	<style name="layoutPadding">
+		<item name="android:paddingLeft">3dp</item>
+		<item name="android:paddingRight">3dp</item>
+		<item name="android:paddingTop">3dp</item>
+		<item name="android:paddingBottom">3dp</item>		
+	</style>
+	
+	<style name="applicationFont" parent="@style/layoutPadding">
+		<item name="android:typeface">serif</item>
+		<item name="android:textSize">15dp</item>
+	</style>
+	
+	<style name="applicationFont.Green">
+		<item name="android:textColor">@color/statusGreen</item>
+	</style>
+
+
+</resources>

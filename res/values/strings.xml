@@ -4,4 +4,7 @@
     <string name="imageChoose">Pick an image</string>
     <string name="app_name">Swinger App</string>
     <string name="imageManipulation_name">Pick a picture</string>
+    <string name="userPreferences_name">User preferences</string>
+    <string name="preferences">Preferences</string>
+    <string name="quit">Quit</string>
 </resources>

@@ -13,10 +13,13 @@ import android.location.LocationManager;
 import android.location.LocationListener;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;   
+import android.view.MenuInflater;
+import android.view.MenuItem;   
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.Window;
 import android.widget.Button;
-import android.widget.TextView;
 
 
 
@@ -27,28 +30,27 @@ public class swinger extends Activity {
 
 	public static final String LOG_TAG = "SwingerApp";
 	private static final int PICK_IMAGE = 101;
-	private LocationManager locmgr = null;
-	private TextView tv;
+	private static final int USER_PREFERENCES = 102;
+	private LocationManager mLocationManager = null;
 
 	// Called when the activity is first created. 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
 		setContentView(R.layout.main);
-
-		tv = (TextView) findViewById(R.id.tv);
-
+		
+		// Remove title bar of the application
+		//requestWindowFeature(Window.FEATURE_NO_TITLE); 
+		
 		userInfo unUser = new userInfo();
-
-
 		unUser.testFunction();
 
 		//grab the location manager service
-		locmgr = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-
-		tv.setText("waiting for location");
+		mLocationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
 
+		// Remove this button for testing purpose only
 		((Button) findViewById(R.id.getImage)).setOnClickListener(new OnClickListener() 
 		{                  
 			public void onClick(View arg0) 
@@ -63,7 +65,43 @@ public class swinger extends Activity {
 
 
 	}
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) 
+	{   
+		MenuInflater inflater = getMenuInflater();    
+		inflater.inflate(R.menu.main_menu, menu);    
+		return true;
+	}
 
+
+    @Override  
+    public boolean onOptionsItemSelected(MenuItem item)    
+    {   
+        super.onOptionsItemSelected(item);
+        
+        try 
+        {
+			switch (item.getItemId())    
+			{   
+			    case R.id.preferences:     
+					Intent intent = new Intent(swinger.this, UserPreferences.class);                     
+					startActivityForResult(intent, USER_PREFERENCES);
+			        break;   
+			    case R.id.quit:
+			    	finish();
+			    	break;
+			    default:
+			    	Log.e(LOG_TAG, "Unknown menu: " + item.toString());
+			}
+		} 
+        catch (Exception e) 
+		{
+			// TODO Auto-generated catch block
+			Log.e(LOG_TAG, e.toString());
+		}   
+        return true;   
+    }	
 
 	public void onActivityResult(int reqCode, int resultCode, Intent data) {
 		super.onActivityResult(reqCode, resultCode, data);
@@ -76,9 +114,6 @@ public class swinger extends Activity {
 				if (resultCode == Activity.RESULT_OK) 
 				{
 					String wImagePath = data.getStringExtra(imageManipulation.IMAGE_PATH);
-
-					tv.setText(wImagePath);
-
 					ImageLevel wImageLevel = (ImageLevel)findViewById(R.id.imageLevel1);
 					if (wImageLevel != null)
 					{
@@ -106,7 +141,6 @@ public class swinger extends Activity {
 		public void onLocationChanged(Location loc) {
 			//sets and displays the lat/long when a location is provided
 			String latlong = "Lat: " + loc.getLatitude() + " Long: " + loc.getLongitude();   
-			tv.setText(latlong);
 		}
 
 		public void onProviderDisabled(String provider) {
@@ -127,14 +161,14 @@ public class swinger extends Activity {
 	@Override
 	public void onPause() {
 		super.onPause();
-		locmgr.removeUpdates(onLocationChange);
+		mLocationManager.removeUpdates(onLocationChange);
 	}
 
 	//reactivates listener when app is resumed
 	@Override
 	public void onResume() {
 		super.onResume();
-		locmgr.requestLocationUpdates(LocationManager.GPS_PROVIDER,0,10000.0f,onLocationChange);
+		mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,0,10000.0f,onLocationChange);
 	}
 
 

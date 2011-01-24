@@ -3,4 +3,6 @@
     <string name="availableStatus">Available</string>
     <string name="pingLabel">Ping :</string>
     <string name="pongLabel">Pong :</string>
+    <color  name="statusGreen">#FF4EFF4E</color>
+    <color  name="statusRed">#FFFF4E4E</color>
 </resources>

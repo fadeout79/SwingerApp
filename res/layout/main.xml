@@ -5,24 +5,29 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     >
+
+<swinger.app.StatusBar
+	style="@style/statusbarRedBackground"
+    android:id="@+id/statusBar1"  
+    android:orientation="horizontal"
+    android:layout_width="fill_parent" 
+    android:layout_height="wrap_content" 
+    /> 
+    
 <TextView
+	style="@style/applicationFont"
     android:id="@+id/tv"  
     android:layout_width="fill_parent" 
     android:layout_height="wrap_content" 
     android:text="@string/hello"
     />
+    
 <Button
     android:id="@+id/getImage"  
     android:layout_width="fill_parent" 
     android:layout_height="wrap_content" 
     android:text="@string/imageChoose"
     />
-
-<swinger.app.StatusBar
-    android:id="@+id/statusBar1"  
-    android:orientation="horizontal"
-    android:layout_width="fill_parent" 
-    android:layout_height="wrap_content" 
-    /> 
+    
 >
 </LinearLayout>

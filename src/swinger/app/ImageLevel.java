@@ -176,7 +176,6 @@ public class ImageLevel extends LinearLayout {
           
           
           final int wThumbColor = 0xff424242;
-          final int wColorColor = 0xFF00FF66;
           final int wBorderColor = 0xffBBBBBB;
           final Paint paint = new Paint();
           final Rect wThumbRectangle = new Rect(wRectThumbnailLeft, wRectThumbnailTop, wRectThumbnailRight, wRectThumbnailBottom);

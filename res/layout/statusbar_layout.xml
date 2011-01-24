@@ -9,6 +9,7 @@
     />    
 
 <TextView
+	style="@style/applicationFont"
 	android:id="@+id/pingReceived"
     android:layout_width="wrap_content" 
     android:layout_height="wrap_content"
@@ -19,6 +20,7 @@
 	/>	
 
 <TextView
+	style="@style/applicationFont"
 	android:id="@+id/pongReceived"
     android:layout_width="wrap_content" 
     android:layout_height="wrap_content"
@@ -29,6 +31,7 @@
 	/>	
 
 <TextView
+	style="@style/applicationFont.Green"
     android:id="@+id/statusMessage"  
     android:layout_width="wrap_content" 
     android:layout_height="wrap_content"

@@ -15,7 +15,7 @@
             </intent-filter>
         </activity>
 	    <activity android:name=".imageManipulation" android:label="@string/imageManipulation_name" />
-
+	    <activity android:name=".UserPreferences" android:label="@string/userPreferences_name" />
     </application>
     
     <uses-sdk android:minSdkVersion="6" />

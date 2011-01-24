@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/mainPage"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+    
+    <TextView
+	style="@style/applicationFont"
+    android:id="@+id/userName_label"  
+    android:layout_width="wrap_content" 
+    android:layout_height="wrap_content" 
+    android:text="@string/username"
+    />
+    
+    <EditText
+    style="@style/applicationFont"
+    android:id="@+id/userName_value"
+    android:layout_width="@dimen/shortTextWidth"
+    android:layout_height="wrap_content"
+    android:layout_toRightOf="@id/userName_label"
+    android:layout_alignTop="@id/userName_label" 
+    />
+
+    <TextView
+	style="@style/applicationFont"
+    android:id="@+id/password_label"  
+    android:layout_width="wrap_content" 
+    android:layout_height="wrap_content"
+    android:layout_below="@id/userName_value"     
+    android:layout_alignLeft="@id/userName_label" 
+    android:text="@string/password"
+    />
+    
+    <EditText
+    style="@style/applicationFont"
+    android:id="@+id/password_value"
+    android:layout_width="@dimen/shortTextWidth"
+    android:layout_height="wrap_content"
+    android:layout_toRightOf="@id/password_label"
+    android:layout_alignLeft="@id/userName_value" 
+    android:layout_alignTop="@id/password_label" 
+    />
+    
+    <Button
+    style="@style/applicationFont"
+    android:id="@+id/buttonOk"
+    android:layout_width="@dimen/shortTextWidth"
+    android:layout_height="wrap_content"    
+    android:layout_below="@id/password_value"     
+    android:text="@string/ok"
+    />
+
+    <Button
+    style="@style/applicationFont"
+    android:id="@+id/buttonCancel"
+    android:layout_width="@dimen/shortTextWidth"
+    android:layout_height="wrap_content"    
+    android:layout_toRightOf="@id/buttonOk"
+    android:layout_alignTop="@id/buttonOk" 
+    android:text="@string/cancel"
+    />
+
+</RelativeLayout>

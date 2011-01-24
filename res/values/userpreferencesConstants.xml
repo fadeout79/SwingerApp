@@ -1,0 +1,9 @@
+<resources><string name="username">User name</string>
+<string name="password">Password</string>
+<string name="gender">Gender</string>
+<string name="searchRadius">Search Radius</string>
+<string name="interest">Interested In</string>
+<dimen name="shortTextWidth">120dp</dimen>
+<string name="ok">Ok</string>
+<string name="cancel">Cancel</string>
+</resources>

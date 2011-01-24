@@ -30,7 +30,7 @@ public class StatusBar extends RelativeLayout
 		super(context, attr);
 		
 		LayoutInflater layoutInflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		layoutInflater.inflate(R.layout.statusbar, this, true);
+		layoutInflater.inflate(R.layout.statusbar_layout, this, true);
 		
 		
 		// TODO Auto-generated constructor stub
